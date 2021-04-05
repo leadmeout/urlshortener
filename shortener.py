@@ -1,13 +1,17 @@
 import pyshorteners
 
 # get url
-original_url = "http://www.cp24.com"
+original_url = input("Please enter the url: \n")
 # initialize shortner
 url_shortener = pyshorteners.Shortener()
 
 # short main_url with tinyurl.short method of Shortener class
-short_url = url_shortener.tinyurl.short(original_url)
 
-
-# printout url
-print(f"The short url is: \n{short_url}")
+while True:
+    try:
+        short_url = url_shortener.tinyurl.short(original_url)
+    except ReadTimeoutError:
+        continue
+    finally:
+        print(f"\nThe short url is: \n{short_url}")
+    break
